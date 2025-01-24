@@ -15,7 +15,7 @@ export const useMarketsPageLogic = () => {
   const activeMarketType = searchParams.get("market-type") || MarketTypes.IRT;
 
   const { data } = useCustomQueryGET<BaseListResponse<MarketType>>(
-    endpoints.markets,
+    endpoints.markets
   );
 
   const tableData = useMemo(
@@ -24,12 +24,13 @@ export const useMarketsPageLogic = () => {
   );
 
   const onTabChange = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log("e", e);
+    const newSearchParams = new URLSearchParams(searchParams);
     if (e.currentTarget.id === "USDT_Tab") {
-      setSearchParams({ "market-type": MarketTypes.USDT });
+      newSearchParams.set("market-type", MarketTypes.USDT);
     } else {
-      setSearchParams({ "market-type": MarketTypes.IRT });
+      newSearchParams.set("market-type", MarketTypes.IRT);
     }
+    setSearchParams(newSearchParams);
   };
 
   return { activeMarketType, onTabChange, tableData };

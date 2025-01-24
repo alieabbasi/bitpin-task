@@ -23,7 +23,7 @@ const Table = <T,>({ columnsData, data }: TableProps<T>) => {
         <thead>
           <tr>
             {columnsData?.map((column, index) => (
-              <th key={index} className={column.className + " px-0.5 sm:px-1"}>
+              <th key={index} className={column.className + " px-1 sm:px-2 md:px-4"}>
                 {column.name}
               </th>
             ))}
@@ -33,7 +33,7 @@ const Table = <T,>({ columnsData, data }: TableProps<T>) => {
           {data?.map((item, index) => (
             <tr
               key={index}
-              className={columnsData?.[0].href ? "hover cursor-pointer" : ""}
+              className={columnsData?.[0].href ? "hover duration-150 cursor-pointer" : ""}
               onClick={() =>
                 columnsData?.[0].href
                   ? navigate(columnsData?.[0].href(item))

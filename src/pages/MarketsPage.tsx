@@ -1,8 +1,7 @@
 import { FC } from "react";
 
 import { MarketTypes, useMarketsPageLogic } from "./useMarketsPageLogic";
-import MarketsIRTTable from "@/components/Markets/MarketsIRTTable";
-import MarketsUSDTTable from "@/components/Markets/MarketsUSDTTable";
+import MarketsTable from "@/components/Markets/MarketsTable";
 
 const Markets: FC = () => {
   const { tableData, activeMarketType, onTabChange } = useMarketsPageLogic();
@@ -27,7 +26,7 @@ const Markets: FC = () => {
           role="tabpanel"
           className="tab-content bg-base-100 border-base-300 rounded-box p-2 sm:p-6"
         >
-          <MarketsIRTTable data={tableData} />
+          <MarketsTable marketType={MarketTypes.IRT} data={tableData} />
         </div>
 
         <input
@@ -44,7 +43,7 @@ const Markets: FC = () => {
           role="tabpanel"
           className="tab-content bg-base-100 border-base-300 rounded-box p-2 sm:p-6"
         >
-          <MarketsUSDTTable data={tableData} />
+          <MarketsTable marketType={MarketTypes.USDT} data={tableData} />
         </div>
       </div>
     </div>
