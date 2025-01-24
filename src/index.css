@@ -64,7 +64,10 @@
 body {
   font-family: "VazirMatn", sans-serif;
   direction: rtl;
-  background-color: var(bg-gray-800);
+}
+
+#root {
+  height: 100%;
 }
 
 .dir-ltr {

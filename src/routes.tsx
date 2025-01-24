@@ -1,11 +1,10 @@
 import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
-// import MarketsPage from "./pages/MarketsPage";
-// import MarketDetails from "./pages/MarketDetails";
 import Layout from "./Layout";
+import NotFoundPage from "./pages/NotFoundPage";
 
 const MarketsPage = lazy(() => import("./pages/MarketsPage"));
-const MarketDetails = lazy(() => import("./pages/MarketDetails"));
+const MarketDetailPage = lazy(() => import("./pages/MarketDetailPage"));
 
 const router = createBrowserRouter([
   {
@@ -18,8 +17,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/:id",
-        element: <MarketDetails />,
+        element: <MarketDetailPage />,
       },
+      {
+        path: "*",
+        element: <NotFoundPage />
+      }
     ],
   },
 ]);

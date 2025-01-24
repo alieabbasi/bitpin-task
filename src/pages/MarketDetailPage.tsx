@@ -1,11 +1,11 @@
 import { FC } from "react";
 import { useParams } from "react-router-dom";
  
-const MarketDetails: FC = () => {
+const MarketDetailPage: FC = () => {
   const { id } = useParams(); 
   return ( 
     <div>Market: {id}</div>
    );
 }
  
-export default MarketDetails;
+export default MarketDetailPage;
