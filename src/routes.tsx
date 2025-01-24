@@ -1,7 +1,11 @@
+import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
-import Markets from "./pages/Markets";
-import MarketDetails from "./pages/MarketDetails";
+// import MarketsPage from "./pages/MarketsPage";
+// import MarketDetails from "./pages/MarketDetails";
 import Layout from "./Layout";
+
+const MarketsPage = lazy(() => import("./pages/MarketsPage"));
+const MarketDetails = lazy(() => import("./pages/MarketDetails"));
 
 const router = createBrowserRouter([
   {
@@ -10,7 +14,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Markets />,
+        element: <MarketsPage />,
       },
       {
         path: "/:id",
