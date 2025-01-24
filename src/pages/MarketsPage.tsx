@@ -18,14 +18,14 @@ const Markets: FC = () => {
           id="IRT_Tab"
           name="markets_tabs"
           role="tab"
-          className="tab"
+          className="tab text-nowrap"
           aria-label="بازار تومانی"
           checked={activeMarketType === MarketTypes.IRT}
           onChange={onTabChange}
         />
         <div
           role="tabpanel"
-          className="tab-content bg-base-100 border-base-300 rounded-box p-6"
+          className="tab-content bg-base-100 border-base-300 rounded-box p-2 sm:p-6"
         >
           <MarketsIRTTable data={tableData} />
         </div>
@@ -35,14 +35,14 @@ const Markets: FC = () => {
           id="USDT_Tab"
           name="markets_tabs"
           role="tab"
-          className="tab"
+          className="tab text-nowrap"
           aria-label="بازار تتری"
           checked={activeMarketType === MarketTypes.USDT}
           onChange={onTabChange}
         />
         <div
           role="tabpanel"
-          className="tab-content bg-base-100 border-base-300 rounded-box p-6"
+          className="tab-content bg-base-100 border-base-300 rounded-box p-2 sm:p-6"
         >
           <MarketsUSDTTable data={tableData} />
         </div>

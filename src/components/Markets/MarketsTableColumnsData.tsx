@@ -13,7 +13,7 @@ export const marketsTableColumnsData: (
     name: "#",
     key: "logo",
     render: (data) => (
-      <div className="size-10">
+      <div className="size-6 sm:size-10">
         <img
           className="size-full"
           src={data.currency1.image}
@@ -21,52 +21,87 @@ export const marketsTableColumnsData: (
         />
       </div>
     ),
+    href: (data) => `/${data.id}`,
   },
   {
     name: "نام بازار",
     key: "name",
     render: (data) => (
       <div className="flex flex-col">
-        <span>{data.title_fa}</span>
-        <span className="text-xs opacity-40">{data.title}</span>
+        <span className="w-44 truncate">{data.title_fa}</span>
+        <span className="text-xs opacity-40 w-44 truncate">{data.title}</span>
       </div>
     ),
   },
   {
     name: "قیمت",
     key: "price",
-    render: (data) =>
-      (+data.price).toLocaleString() +
-      (marketCode === MarketTypes.IRT ? " تومان" : " USDT"),
+    render: (data) => (
+      <div className="flex flex-col">
+        <span>
+          {(+data.price).toLocaleString()}
+          <span className="opacity-50">
+            {marketCode === MarketTypes.IRT ? " تومان" : " USDT"}
+          </span>
+        </span>
+        <div className="sm:hidden">
+          <div
+            className={clsx("px-2 dir-ltr text-nowrap", {
+              "text-green-600": data.price_info.change > 0,
+              "text-red-600": data.price_info.change < 0,
+              "text-white": data.price_info.change === 0,
+            })}
+          >
+            {(data.price_info.change > 0 ? "+" : "") + data.price_info.change} %
+          </div>
+        </div>
+      </div>
+    ),
   },
   {
     name: "تغییر 24h",
     key: "change",
     render: (data) => (
       <div
-        className={clsx("px-2 dir-ltr w-full text-center pb-0.5 pt-1 rounded-full", {
-          "text-green-600 bg-green-600/20": data.price_info.change > 0,
-          "text-red-600 bg-red-600/20": data.price_info.change < 0,
-          "text-white bg-white/20": data.price_info.change === 0,
-        })}
+        className={clsx(
+          "px-2 dir-ltr w-full text-center pb-0.5 pt-1 rounded-full text-nowrap",
+          {
+            "text-green-600 bg-green-600/20": data.price_info.change > 0,
+            "text-red-600 bg-red-600/20": data.price_info.change < 0,
+            "text-white bg-white/20": data.price_info.change === 0,
+          }
+        )}
       >
         {(data.price_info.change > 0 ? "+" : "") + data.price_info.change} %
       </div>
     ),
+    className: "max-sm:hidden",
   },
   {
     name: "حجم معاملات 24h",
     key: "volume",
-    render: (data) => (+data.volume_24h).toLocaleString() + " تومان",
+    render: (data) => (
+      <span>
+        {(+data.volume_24h).toLocaleString()}
+        <span className="opacity-50">
+          {marketCode === MarketTypes.IRT ? " تومان" : " USDT"}
+        </span>
+      </span>
+    ),
+    className: "max-sm:hidden",
   },
   {
     name: "",
     key: "operations",
     render: (data) => (
-      <Link to={`/${data.id}`} className="btn btn-accent btn-sm">
+      <Link
+        to={`/${data.id}`}
+        className="btn btn-accent btn-sm flex shrink-0 flex-nowrap"
+      >
         <span>جزيیات</span>
         <ArrowLeft size="20" color="white" />
       </Link>
     ),
+    className: "max-lg:hidden",
   },
 ];
