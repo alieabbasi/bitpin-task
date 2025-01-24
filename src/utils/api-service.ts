@@ -5,11 +5,7 @@ import {
 } from "@tanstack/react-query";
 import axios from "axios";
 
-const BASE_URL = "https://api.bitpin.org";
-const API_VERSION = "v1";
-
-const bitpinAxios = axios.create({
-  baseURL: `${BASE_URL}/${API_VERSION}/`,
+export const bitpinAxios = axios.create({
   headers: {
     "Content-Type": "application/json",
   },

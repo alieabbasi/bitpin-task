@@ -1,5 +1,7 @@
 import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
+// import MarketsPage from "./pages/MarketsPage";
+// import MarketDetails from "./pages/MarketDetails";
 import Layout from "./Layout";
 import NotFoundPage from "./pages/NotFoundPage";
 

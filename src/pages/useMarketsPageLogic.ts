@@ -1,9 +1,7 @@
-import { MarketType } from "@/models/market.model";
-import { useCustomQueryGET } from "@/utils/api-service";
-import endpoints from "@/utils/endpoints";
 import { paginateMarketsArray } from "@/utils/pagination";
 import { ChangeEvent, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
+import useStore from "../services/store";
 
 export enum MarketTypes {
   IRT = "IRT",
@@ -14,12 +12,14 @@ export const useMarketsPageLogic = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const activeMarketType = searchParams.get("market-type") || MarketTypes.IRT;
 
-  const { data } = useCustomQueryGET<BaseListResponse<MarketType>>(
-    endpoints.markets
-  );
+  const {
+    markets: data,
+    isLoading,
+    isError,
+  } = useStore((state) => state);
 
   const tableData = useMemo(
-    () => paginateMarketsArray(data?.results || [], 10, activeMarketType),
+    () => paginateMarketsArray(data || [], 10, activeMarketType),
     [data, activeMarketType]
   );
 
@@ -33,5 +33,5 @@ export const useMarketsPageLogic = () => {
     setSearchParams(newSearchParams);
   };
 
-  return { activeMarketType, onTabChange, tableData };
+  return { activeMarketType, onTabChange, tableData, isLoading, isError };
 };
