@@ -26,7 +26,6 @@ export const useMarketDetailPageLogic = () => {
     }
     : undefined;
   }, [id, markets]);
-  console.log('id', id)
 
   const onTabChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newSearchParams = new URLSearchParams(searchParams);

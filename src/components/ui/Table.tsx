@@ -1,3 +1,4 @@
+import { Ghost } from "iconsax-react";
 import { useNavigate } from "react-router-dom";
 
 export interface ColumnsDataType<T> {
@@ -9,47 +10,75 @@ export interface ColumnsDataType<T> {
 }
 
 interface TableProps<T> {
-  columnsData?: ColumnsDataType<T>[];
-  data?: T[];
+  title: string;
+  columnsData: ColumnsDataType<T>[];
+  data: T[];
 }
 
-const Table = <T,>({ columnsData, data }: TableProps<T>) => {
+const Table = <T,>({ title, columnsData, data }: TableProps<T>) => {
   const navigate = useNavigate();
+  const titleSuffix = title.endsWith("ی")
+    ? ""
+    : title.endsWith("ه")
+    ? "‌ای"
+    : "ی";
 
   return (
-    <div className="overflow-x-auto">
-      <table className="table">
-        {/* head */}
-        <thead>
-          <tr>
-            {columnsData?.map((column, index) => (
-              <th key={index} className={column.className + " px-1 sm:px-2 md:px-4"}>
-                {column.name}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {data?.map((item, index) => (
-            <tr
-              key={index}
-              className={columnsData?.[0].href ? "hover duration-150 cursor-pointer" : ""}
-              onClick={() =>
-                columnsData?.[0].href
-                  ? navigate(columnsData?.[0].href(item))
-                  : null
-              }
-            >
-              {columnsData?.map((column, index) => (
-                <td key={index} className={column.className + " px-1 sm:px-2 md:px-4"}>
-                  {column.render(item)}
-                </td>
+    <>
+      {data.length === 0 ? (
+        <div className="w-full h-full flex flex-col justify-center items-center">
+          <div className="flex justify-center items-center">
+            <Ghost size="32" className="text-amber-600" />
+            <span className="text-lg mr-4">
+              هیچ {title + titleSuffix} پیدا نشد :(
+            </span>
+          </div>
+        </div>
+      ) : (
+        <div className="overflow-x-auto">
+          <table className="table">
+            <thead>
+              <tr>
+                {columnsData?.map((column, index) => (
+                  <th
+                    key={index}
+                    className={column.className + " px-1 sm:px-2 md:px-4"}
+                  >
+                    {column.name}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {data?.map((item, index) => (
+                <tr
+                  key={index}
+                  className={
+                    columnsData?.[0].href
+                      ? "hover duration-150 cursor-pointer"
+                      : ""
+                  }
+                  onClick={() =>
+                    columnsData?.[0].href
+                      ? navigate(columnsData?.[0].href(item))
+                      : null
+                  }
+                >
+                  {columnsData?.map((column, index) => (
+                    <td
+                      key={index}
+                      className={column.className + " px-1 sm:px-2 md:px-4"}
+                    >
+                      {column.render(item)}
+                    </td>
+                  ))}
+                </tr>
               ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+            </tbody>
+          </table>
+        </div>
+      )}
+    </>
   );
 };
 

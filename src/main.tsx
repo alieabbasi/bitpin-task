@@ -19,12 +19,21 @@ const queryClient = new QueryClient({
   },
 });
 
+globalThis.dateFormatter = new Intl.DateTimeFormat("fa", {
+  year: "numeric",
+  month: "short",
+  day: "2-digit",
+  hour: "2-digit",
+  minute: "2-digit",
+  
+});
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <ErrorBoundary>
         <Suspense fallback={<Loading />}>
-            <RouterProvider router={routes} />
+          <RouterProvider router={routes} />
         </Suspense>
       </ErrorBoundary>
     </QueryClientProvider>

@@ -1,4 +1,4 @@
-import { MarketType } from "@/models/market.model";
+import { MarketType } from "@/@Types/market.model";
 import { FC } from "react";
 import Table from "../ui/Table";
 import { marketsTableColumnsData } from "./MarketsTableColumnsData";
@@ -25,6 +25,7 @@ const MarketsTable: FC<MarketsTableProps> = ({ data, marketType }) => {
   return (
     <div className="flex flex-col">
       <Table
+      title="بازار"
         columnsData={marketsTableColumnsData(marketType)}
         data={data[page - 1]}
       />

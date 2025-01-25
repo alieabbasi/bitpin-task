@@ -4,7 +4,7 @@ import { ArrowLeft } from "iconsax-react";
 
 import { MarketTypes } from "@/pages/useMarketsPageLogic";
 import { ColumnsDataType } from "../ui/Table";
-import { MarketType } from "@/models/market.model";
+import { MarketType } from "@/@Types/market.model";
 
 export const marketsTableColumnsData: (
   marketCode: MarketTypes

@@ -5,6 +5,7 @@ import {
 } from "./useMarketDetailPageLogic";
 import ActiveOrdersTable from "@/components/MarketDetails/ActiveOrdersTable";
 import { MarketTypes } from "./useMarketsPageLogic";
+import MatchesTable from "@/components/MarketDetails/MatchesTable";
 
 const MarketDetailPage: FC = () => {
   const { tabValue, marketData, onTabChange } = useMarketDetailPageLogic();
@@ -68,6 +69,28 @@ const MarketDetailPage: FC = () => {
                 marketCode={marketData.marketType as MarketTypes}
                 marketId={marketData.id.toString()}
                 ordersType={MarketDetailPageTabValues.SELL}
+              />
+            )}
+          </div>
+
+          <input
+            type="radio"
+            id="matches-tab"
+            name="market_details_tab"
+            role="tab"
+            className="tab text-nowrap"
+            aria-label="معاملات"
+            checked={tabValue === MarketDetailPageTabValues.MATCHES}
+            onChange={onTabChange}
+          />
+          <div
+            role="tabpanel"
+            className="tab-content bg-base-100 border-base-300 rounded-box p-2 sm:p-6"
+          >
+            {tabValue === MarketDetailPageTabValues.MATCHES && (
+              <MatchesTable
+                marketType={marketData.marketType as MarketTypes}
+                marketId={marketData.id}
               />
             )}
           </div>

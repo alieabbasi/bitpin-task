@@ -1,4 +1,4 @@
-import { MarketType } from "@/models/market.model";
+import { MarketType } from "@/@Types/market.model";
 
 export const paginateMarketsArray = (
   items: MarketType[],
