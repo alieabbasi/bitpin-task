@@ -9,6 +9,12 @@ declare global {
   var dateFormatter: Intl.DateTimeFormat;
 }
 
+declare module "decimal.js" {
+  interface Decimal {
+    toLocaleString(maximumFractionDigits?: number): string
+  }
+}
+
 export interface BaseListResponse<T> {
   count: number;
   next: string | null;
@@ -31,8 +37,8 @@ Number.prototype.toLocale = function (maximumFractionDigits?: number) {
   });
 };
 
-Decimal.prototype.toLocaleString = function () {
-  return this.toNumber().toLocale();
+Decimal.prototype.toLocaleString = function (maximumFractionDigits?: number) {
+  return this.toNumber().toLocale(maximumFractionDigits);
 };
 
 export {};
