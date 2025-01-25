@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, Suspense } from "react";
 import {
   MarketDetailPageTabValues,
   useMarketDetailPageLogic,
@@ -6,6 +6,7 @@ import {
 import ActiveOrdersTable from "@/components/MarketDetails/ActiveOrdersTable";
 import { MarketTypes } from "./useMarketsPageLogic";
 import MatchesTable from "@/components/MarketDetails/MatchesTable";
+import Loading from "@/components/ui/Loading";
 
 const MarketDetailPage: FC = () => {
   const { tabValue, marketData, onTabChange } = useMarketDetailPageLogic();
@@ -42,11 +43,13 @@ const MarketDetailPage: FC = () => {
             className="tab-content bg-base-100 border-base-300 rounded-box p-2 sm:p-6"
           >
             {tabValue === MarketDetailPageTabValues.BUY && (
-              <ActiveOrdersTable
-                marketCode={marketData.marketType as MarketTypes}
-                marketId={marketData.id.toString()}
-                ordersType={MarketDetailPageTabValues.BUY}
-              />
+              <Suspense fallback={<Loading dynamic />}>
+                <ActiveOrdersTable
+                  marketCode={marketData.marketType as MarketTypes}
+                  marketId={marketData.id.toString()}
+                  ordersType={MarketDetailPageTabValues.BUY}
+                />
+              </Suspense>
             )}
           </div>
 
@@ -65,11 +68,13 @@ const MarketDetailPage: FC = () => {
             className="tab-content bg-base-100 border-base-300 rounded-box p-2 sm:p-6"
           >
             {tabValue === MarketDetailPageTabValues.SELL && (
-              <ActiveOrdersTable
-                marketCode={marketData.marketType as MarketTypes}
-                marketId={marketData.id.toString()}
-                ordersType={MarketDetailPageTabValues.SELL}
-              />
+              <Suspense fallback={<Loading dynamic />}>
+                <ActiveOrdersTable
+                  marketCode={marketData.marketType as MarketTypes}
+                  marketId={marketData.id.toString()}
+                  ordersType={MarketDetailPageTabValues.SELL}
+                />
+              </Suspense>
             )}
           </div>
 
@@ -88,10 +93,12 @@ const MarketDetailPage: FC = () => {
             className="tab-content bg-base-100 border-base-300 rounded-box p-2 sm:p-6"
           >
             {tabValue === MarketDetailPageTabValues.MATCHES && (
-              <MatchesTable
-                marketType={marketData.marketType as MarketTypes}
-                marketId={marketData.id}
-              />
+              <Suspense fallback={<Loading dynamic />}>
+                <MatchesTable
+                  marketType={marketData.marketType as MarketTypes}
+                  marketId={marketData.id}
+                />
+              </Suspense>
             )}
           </div>
         </div>

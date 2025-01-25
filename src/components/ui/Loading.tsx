@@ -15,7 +15,7 @@ const Loading: FC<LoadingProps & PropsWithChildren> = ({ info, dynamic }) => {
       })}
     >
       <span className="loading loading-infinity loading-lg" />
-      <span className="mr-2">{info}</span>
+      <span className="mr-2">{info || "در حال بارگزاری داده‌ها"}</span>
     </div>
   );
 };

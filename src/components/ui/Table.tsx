@@ -1,5 +1,6 @@
 import { Ghost } from "iconsax-react";
 import { useNavigate } from "react-router-dom";
+import Loading from "./Loading";
 
 export interface ColumnsDataType<T> {
   name: string;
@@ -10,12 +11,13 @@ export interface ColumnsDataType<T> {
 }
 
 interface TableProps<T> {
+  isLoading?: boolean;
   title: string;
   columnsData: ColumnsDataType<T>[];
   data: T[];
 }
 
-const Table = <T,>({ title, columnsData, data }: TableProps<T>) => {
+const Table = <T,>({ title, columnsData, data, isLoading }: TableProps<T>) => {
   const navigate = useNavigate();
   const titleSuffix = title.endsWith("ی")
     ? ""
@@ -25,7 +27,9 @@ const Table = <T,>({ title, columnsData, data }: TableProps<T>) => {
 
   return (
     <>
-      {data.length === 0 ? (
+      {isLoading ? (
+        <Loading info="در حال بارگزاری داده‌ها" dynamic />
+      ) : data?.length === 0 ? (
         <div className="w-full h-full flex flex-col justify-center items-center">
           <div className="flex justify-center items-center">
             <Ghost size="32" className="text-amber-600" />

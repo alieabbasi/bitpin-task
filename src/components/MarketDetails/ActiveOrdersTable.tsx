@@ -1,6 +1,6 @@
 import { FC, Suspense, useMemo, useState } from "react";
 import Table, { ColumnsDataType } from "../ui/Table";
-import { useCustomQueryGET } from "@/utils/api-service";
+import { useCustomQueryGET } from "@/services/api.service";
 import endpoints from "@/utils/endpoints";
 import { OrdersListType, OrderType } from "@/@Types/order.model";
 import { MarketTypes } from "@/pages/useMarketsPageLogic";
@@ -28,7 +28,7 @@ const ActiveOrdersTable: FC<ActiveOrdersTableProps> = ({
 }) => {
   const [receivePercent, setReceivePercent] = useState(0);
 
-  const { data } = useCustomQueryGET<OrdersListType>(
+  const { data, isLoading } = useCustomQueryGET<OrdersListType>(
     endpoints.activeOrders(marketId || ""),
     {
       queryParams: {
@@ -63,13 +63,12 @@ const ActiveOrdersTable: FC<ActiveOrdersTableProps> = ({
 
   return (
     <div className="size-full flex flex-col space-y-4">
-      <Suspense fallback={<Loading />}>
-        <Table
-          title={`سفارش ${ordersType === "buy" ? "خرید" : "فروش"}`}
-          columnsData={columnsData(marketCode)}
-          data={orders}
-        />
-      </Suspense>
+      <Table
+        isLoading={isLoading}
+        title={`سفارش ${ordersType === "buy" ? "خرید" : "فروش"}`}
+        columnsData={columnsData(marketCode)}
+        data={orders}
+      />
       {orders.length > 0 && (
         <>
           <hr className="border-base-300" />

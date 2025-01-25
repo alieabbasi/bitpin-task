@@ -1,5 +1,5 @@
 import { MarketType } from "@/@Types/market.model";
-import { bitpinAxios } from "@/utils/api-service";
+import { bitpinAxios } from "@/services/api.service";
 import endpoints from "@/utils/endpoints";
 import { create } from "zustand";
 

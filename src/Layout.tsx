@@ -4,7 +4,7 @@ import Footer from "./components/layout/Footer";
 import ErrorBoundary from "./pages/ErrorBoundary";
 import { Suspense, useEffect } from "react";
 import Loading from "./components/ui/Loading";
-import useStore from "./services/store";
+import useStore from "./services/store.service";
 
 const Layout = () => {
   const fetchMarkets = useStore((store) => store.fetchMarkets);

@@ -2,11 +2,20 @@ import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 // import MarketsPage from "./pages/MarketsPage";
 // import MarketDetails from "./pages/MarketDetails";
-import Layout from "./Layout";
-import NotFoundPage from "./pages/NotFoundPage";
+// import Layout from "./Layout";
+// import NotFoundPage from "./pages/NotFoundPage";
+import withSuspenseLoading from "./components/withSuspenceLoading";
 
-const MarketsPage = lazy(() => import("./pages/MarketsPage"));
-const MarketDetailPage = lazy(() => import("./pages/MarketDetailPage"));
+const MarketsPage = withSuspenseLoading(
+  lazy(() => import("./pages/MarketsPage"))
+);
+const MarketDetailPage = withSuspenseLoading(
+  lazy(() => import("./pages/MarketDetailPage"))
+);
+const NotFoundPage = withSuspenseLoading(
+  lazy(() => import("./pages/NotFoundPage"))
+);
+const Layout = withSuspenseLoading(lazy(() => import("./Layout")));
 
 const router = createBrowserRouter([
   {
@@ -23,8 +32,8 @@ const router = createBrowserRouter([
       },
       {
         path: "*",
-        element: <NotFoundPage />
-      }
+        element: <NotFoundPage />,
+      },
     ],
   },
 ]);

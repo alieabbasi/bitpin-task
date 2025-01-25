@@ -1,6 +1,6 @@
 import { FC } from "react";
 import Table, { ColumnsDataType } from "../ui/Table";
-import { useCustomQueryGET } from "@/utils/api-service";
+import { useCustomQueryGET } from "@/services/api.service";
 import endpoints from "@/utils/endpoints";
 import { MatchType } from "@/@Types/match.model";
 import { MarketTypes } from "@/pages/useMarketsPageLogic";
@@ -11,11 +11,18 @@ interface MatchesTableProps {
 }
 
 const MatchesTable: FC<MatchesTableProps> = ({ marketId, marketType }) => {
-  const { data } = useCustomQueryGET<MatchType[]>(endpoints.matches(marketId));
+  const { data, isLoading } = useCustomQueryGET<MatchType[]>(
+    endpoints.matches(marketId)
+  );
 
   return (
     <div className="size-full">
-      <Table title="معامله" data={data} columnsData={columnsData(marketType)} />
+      <Table
+        isLoading={isLoading}
+        title="معامله"
+        data={data}
+        columnsData={columnsData(marketType)}
+      />
     </div>
   );
 };
@@ -38,9 +45,7 @@ const columnsData: (marketType: MarketTypes) => ColumnsDataType<MatchType>[] = (
     key: "price",
     render: (data) => (
       <span>
-        {+data.price >= 1000
-          ? (+data.price).toLocaleString()
-          : data.price}
+        {+data.price >= 1000 ? (+data.price).toLocaleString() : data.price}
         <span className="opacity-50">
           {marketType === MarketTypes.IRT ? " تومان" : " USDT"}
         </span>
