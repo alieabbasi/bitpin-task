@@ -10,32 +10,43 @@ interface MatchesTableProps {
   marketType: MarketTypes;
 }
 
-const MatchesTable: FC<MatchesTableProps> = ({ marketId }) => {
+const MatchesTable: FC<MatchesTableProps> = ({ marketId, marketType }) => {
   const { data } = useCustomQueryGET<MatchType[]>(endpoints.matches(marketId));
 
   return (
     <div className="size-full">
-      <Table
-        title="معامله"
-        data={data.splice(0, 10)}
-        columnsData={columnsData}
-      />
+      <Table title="معامله" data={data} columnsData={columnsData(marketType)} />
     </div>
   );
 };
 
 export default MatchesTable;
 
-const columnsData: ColumnsDataType<MatchType>[] = [
+const columnsData: (marketType: MarketTypes) => ColumnsDataType<MatchType>[] = (
+  marketType
+) => [
   {
     name: "مقدار",
     key: "match_amount",
-    render: (data) => (+data.match_amount).toLocaleString(),
+    render: (data) =>
+      +data.match_amount >= 1000
+        ? (+data.match_amount).toLocaleString()
+        : data.match_amount,
   },
   {
     name: "قیمت",
     key: "price",
-    render: (data) => (+data.price).toLocaleString() + " ",
+
+    render: (data) => (
+      <span>
+        {+data.price >= 1000
+          ? (+data.price).toLocaleString()
+          : data.price}
+        <span className="opacity-50">
+          {marketType === MarketTypes.IRT ? " تومان" : " USDT"}
+        </span>
+      </span>
+    ),
   },
   {
     name: "زمان معامله",

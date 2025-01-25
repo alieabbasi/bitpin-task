@@ -1,8 +1,8 @@
 export interface OrderType {
-  amount: number;
-  price: number;
-  remain: number;
-  value: number;
+  amount: string;
+  price: string;
+  remain: string;
+  value: string;
 }
 
 export interface OrdersListType {
