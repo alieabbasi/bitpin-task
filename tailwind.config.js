@@ -2,7 +2,17 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+        wiggle: "wiggle 0.5s ease-in-out",
+      },
+      keyframes: {
+        wiggle: {
+          "33%, 66%": { transform: "rotate(-8deg)" },
+          "16%, 50%, 84%": { transform: "rotate(8deg)" },
+        },
+      },
+    },
     container: {
       center: true,
       padding: "1rem",

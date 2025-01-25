@@ -11,7 +11,7 @@ const Loading: FC<LoadingProps & PropsWithChildren> = ({ info, dynamic }) => {
     <div
       className={clsx("w-full flex justify-center items-center", {
         "h-screen": !dynamic,
-        "h-full": dynamic,
+        "min-h-[50vh]": dynamic,
       })}
     >
       <span className="loading loading-infinity loading-lg" />

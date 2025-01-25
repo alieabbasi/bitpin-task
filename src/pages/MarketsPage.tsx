@@ -16,7 +16,7 @@ const Markets: FC = () => {
       {isLoading ? (
         <Loading info="در حال بارگزاری داده‌ها..." />
       ) : (
-        <div role="tablist" className="tabs tabs-lifted">
+        <div role="tablist" className="tabs tabs-lifted md:tabs-lg">
           <input
             type="radio"
             id="IRT_Tab"

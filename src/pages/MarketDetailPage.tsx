@@ -15,9 +15,9 @@ const MarketDetailPage: FC = () => {
 
   return (
     <>
-      <div className="w-full flex flex-col space-y-4">
-        <div className="w-full text-center text-2xl flex justify-center items-center space-x-2 space-x-reverse">
-          <span className="text-2xl">جزيیات بازار: </span>
+      <div className="w-full h-full flex flex-col space-y-4 min-h-[50vh]">
+        <div className="w-full text-2xl flex justify-center items-center space-x-2 space-x-reverse">
+          <span className="text-2xl">بازار:</span>
           <div className="size-10">
             <img
               src={marketData.image}
@@ -27,7 +27,7 @@ const MarketDetailPage: FC = () => {
           </div>
           <span className="font-bold">{marketData.title}</span>
         </div>
-        <div role="tablist" className="tabs tabs-lifted">
+        <div role="tablist" className="tabs tabs-lifted md:tabs-lg">
           <input
             type="radio"
             id="buy-orders-tab"

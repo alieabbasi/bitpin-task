@@ -1,19 +1,19 @@
 import Decimal from "decimal.js";
 
 declare global {
-  interface BaseListResponse<T> {
-    count: number;
-    next: string | null;
-    previous: string | null;
-    results: T[];
-  }
-
   interface Number {
     toLocale(maximumFractionDigits?: number): string;
   }
 
   // eslint-disable-next-line no-var
   var dateFormatter: Intl.DateTimeFormat;
+}
+
+export interface BaseListResponse<T> {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: T[];
 }
 
 globalThis.dateFormatter = new Intl.DateTimeFormat("fa", {

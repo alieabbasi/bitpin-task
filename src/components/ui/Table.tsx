@@ -30,7 +30,7 @@ const Table = <T,>({ title, columnsData, data, isLoading }: TableProps<T>) => {
       {isLoading ? (
         <Loading info="در حال بارگزاری داده‌ها" dynamic />
       ) : data?.length === 0 ? (
-        <div className="w-full h-full flex flex-col justify-center items-center">
+        <div className="w-full h-full min-h-[50vh] flex flex-col justify-center items-center">
           <div className="flex justify-center items-center">
             <Ghost size="32" className="text-amber-600" />
             <span className="text-lg mr-4">

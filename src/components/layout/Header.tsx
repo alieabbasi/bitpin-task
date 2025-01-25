@@ -14,7 +14,7 @@ const Header: FC = () => {
             </Link>
           </li>
         </ul>
-        <div className="w-12 h-12 rounded-lg overflow-hidden">
+        <div className="w-12 h-12 rounded-lg overflow-hidden hover:animate-wiggle">
         <img src="/bitpin.png" alt="" />
         </div>
       </nav>

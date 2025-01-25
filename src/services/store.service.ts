@@ -1,3 +1,4 @@
+import { BaseListResponse } from "@/@Types/globals";
 import { MarketType } from "@/@Types/market.model";
 import { bitpinAxios } from "@/services/api.service";
 import endpoints from "@/utils/endpoints";

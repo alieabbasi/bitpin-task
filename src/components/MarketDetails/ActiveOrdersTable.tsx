@@ -1,4 +1,4 @@
-import { FC, Suspense, useMemo, useState } from "react";
+import { FC, useMemo, useState } from "react";
 import Table, { ColumnsDataType } from "../ui/Table";
 import { useCustomQueryGET } from "@/services/api.service";
 import endpoints from "@/utils/endpoints";
@@ -6,7 +6,6 @@ import { OrdersListType, OrderType } from "@/@Types/order.model";
 import { MarketTypes } from "@/pages/useMarketsPageLogic";
 import Decimal from "decimal.js";
 import RangeInput from "../ui/RangeInput";
-import Loading from "../ui/Loading";
 
 interface ActiveOrdersTableProps {
   marketId: string;
