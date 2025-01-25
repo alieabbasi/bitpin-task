@@ -36,7 +36,6 @@ const columnsData: (marketType: MarketTypes) => ColumnsDataType<MatchType>[] = (
   {
     name: "قیمت",
     key: "price",
-
     render: (data) => (
       <span>
         {+data.price >= 1000

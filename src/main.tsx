@@ -7,6 +7,7 @@ import routes from "./routes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import ErrorBoundary from "./pages/ErrorBoundary";
 import Loading from "./components/ui/Loading";
+import Decimal from "decimal.js";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,8 +26,14 @@ globalThis.dateFormatter = new Intl.DateTimeFormat("fa", {
   day: "2-digit",
   hour: "2-digit",
   minute: "2-digit",
-  
 });
+
+Decimal.prototype.toLocaleString = function (
+  locales?: string | string[],
+  options?: Intl.NumberFormatOptions
+) {
+  return this.toNumber().toLocaleString(locales, options);
+};
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

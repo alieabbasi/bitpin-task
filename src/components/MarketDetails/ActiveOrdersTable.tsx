@@ -1,10 +1,12 @@
-import { FC, useMemo } from "react";
+import { FC, Suspense, useMemo, useState } from "react";
 import Table, { ColumnsDataType } from "../ui/Table";
 import { useCustomQueryGET } from "@/utils/api-service";
 import endpoints from "@/utils/endpoints";
 import { OrdersListType, OrderType } from "@/@Types/order.model";
 import { MarketTypes } from "@/pages/useMarketsPageLogic";
 import Decimal from "decimal.js";
+import RangeInput from "../ui/RangeInput";
+import Loading from "../ui/Loading";
 
 interface ActiveOrdersTableProps {
   marketId: string;
@@ -24,6 +26,8 @@ const ActiveOrdersTable: FC<ActiveOrdersTableProps> = ({
   ordersType,
   marketCode,
 }) => {
+  const [receivePercent, setReceivePercent] = useState(0);
+
   const { data } = useCustomQueryGET<OrdersListType>(
     endpoints.activeOrders(marketId || ""),
     {
@@ -59,40 +63,54 @@ const ActiveOrdersTable: FC<ActiveOrdersTableProps> = ({
 
   return (
     <div className="size-full flex flex-col space-y-4">
-      <Table
-        title={`سفارش ${ordersType === "buy" ? "خرید" : "فروش"}`}
-        columnsData={columnsData(marketCode)}
-        data={orders}
-      />
-      <hr className="border-base-300" />
-      <div className="bg-base-200 rounded-lg flex flex-wrap">
-        <div className="flex justify-center items-center space-x-2 space-x-reverse p-4">
-          <p className="text-sm">مجموع باقی‌مانده:</p>
-          <p className="font-bold">
-            {ordersAnalytics.totalRemains.toLocaleString()}
-          </p>
-        </div>
-        <div className="flex justify-center items-center space-x-2 space-x-reverse p-4">
-          <p className="text-sm">مجموع مبالغ:</p>
-          <p className="font-bold">
-            {ordersAnalytics.totalValues.toLocaleString()}{" "}
-            <span className="opacity-50">
-              {marketCode === MarketTypes.IRT ? " تومان" : " USDT"}
-            </span>
-          </p>
-        </div>
-        <div className="flex justify-center items-center space-x-2 space-x-reverse p-4">
-          <p className="text-sm">میانگین قیمت‌:</p>
-          <p className="font-bold">
-            {ordersAnalytics.weightedPriceSum
-              .div(ordersAnalytics.totalAmount)
-              .toLocaleString()}
-            <span className="opacity-50">
-              {marketCode === MarketTypes.IRT ? " تومان" : " USDT"}
-            </span>
-          </p>
-        </div>
-      </div>
+      <Suspense fallback={<Loading />}>
+        <Table
+          title={`سفارش ${ordersType === "buy" ? "خرید" : "فروش"}`}
+          columnsData={columnsData(marketCode)}
+          data={orders}
+        />
+      </Suspense>
+      {orders.length > 0 && (
+        <>
+          <hr className="border-base-300" />
+          <div className="bg-base-200 rounded-lg flex flex-wrap">
+            <div className="flex justify-center items-center space-x-2 space-x-reverse p-4">
+              <p className="text-sm">مجموع باقی‌مانده:</p>
+              <p className="font-bold">
+                {ordersAnalytics.totalRemains.toLocaleString()}
+              </p>
+            </div>
+            <div className="flex justify-center items-center space-x-2 space-x-reverse p-4">
+              <p className="text-sm">مجموع مبالغ:</p>
+              <p className="font-bold">
+                {ordersAnalytics.totalValues.toLocaleString()}{" "}
+                <span className="opacity-50">
+                  {marketCode === MarketTypes.IRT ? " تومان" : " USDT"}
+                </span>
+              </p>
+            </div>
+            <div className="flex justify-center items-center space-x-2 space-x-reverse p-4">
+              <p className="text-sm">میانگین قیمت‌:</p>
+              <p className="font-bold">
+                {ordersAnalytics.weightedPriceSum
+                  .div(ordersAnalytics.totalAmount)
+                  .toLocaleString()}
+                <span className="opacity-50">
+                  {marketCode === MarketTypes.IRT ? " تومان" : " USDT"}
+                </span>
+              </p>
+            </div>
+          </div>
+          <hr className="border-base-300" />
+          <div className="w-full flex flex-col">
+            <div className="flex space-x-2 space-x-reverse">
+              <span className="text-sm">درصد انتخابی:</span>
+              <span className=" font-bold">{receivePercent} %</span>
+            </div>
+            <RangeInput value={receivePercent} onChange={setReceivePercent} />
+          </div>
+        </>
+      )}
     </div>
   );
 };
