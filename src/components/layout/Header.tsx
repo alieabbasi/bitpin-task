@@ -19,7 +19,7 @@ const Header: FC = () => {
       />
       <div className="drawer-content flex flex-col bg-base-300">
         {/* Navbar */}
-        <div className="p-0 navbar container w-full">
+        <div className="p-0 navbar w-full">
           <div className="flex-none sm:hidden">
             <label
               htmlFor="main-side-bar"
