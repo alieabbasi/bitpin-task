@@ -3,7 +3,10 @@ import { FC } from "react";
 const Footer: FC = () => {
   return (
     <footer className="bg-gray-800 text-white text-center p-4">
-      <p>&copy; {new Date().getFullYear()} Bitpin</p>
+      <div className="flex justify-between items-center container">
+        <img src="/bitpin-text.svg" alt="bitpin" className="w-32"/>
+        <p>&copy; {new Date().getFullYear()} Bitpin</p>
+      </div>
     </footer>
   );
 };

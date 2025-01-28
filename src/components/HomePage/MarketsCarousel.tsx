@@ -19,7 +19,7 @@ const MarketCarousel: FC = () => {
           transition={{
             repeat: Infinity,
             ease: "linear",
-            duration: 200000/window.innerWidth,
+            duration: 150,
           }}
           style={{ display: "flex", whiteSpace: "nowrap" }}
         >

@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const HomePage: FC = () => {
   return (
     <div className="w-full h-full self-center flex flex-col justify-center max-sm:items-center">
-      <h1 className="text-xl sm:text-4xl font-extrabold flex max-sm:flex-col justify-center items-center">
+      <h1 className="text-xl sm:text-4xl font-extrabold flex max-sm:flex-col max-sm:justify-center items-center">
         <div className="size-10 rounded-lg overflow-hidden max-sm:mb-4 sm:ml-4">
           <img src="/bitpin.png" alt="بیت‌پین" />
         </div>
