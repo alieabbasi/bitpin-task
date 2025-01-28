@@ -30,16 +30,16 @@ export default {
     themes: [
       {
         customtheme: {
-          primary: "#181C14",
-          secondary: "#3C3D37",
-          accent: "#697565",
+          primary: "#121311",
+          secondary: "#32332f",
+          accent: "#38c67d",
           neutral: "#ECDFCC",
-          "base-100": "#181C14",
-          "base-200": "#3C3D37",
+          "base-100": "#121311",
+          "base-200": "#32332f",
           "base-300": "#697565",
           "base-content": "#ECDFCC",
           info: "#697565",
-          success: "#3C3D37",
+          success: "#32332f",
           warning: "#ECDFCC",
           error: "#E57373",
         },

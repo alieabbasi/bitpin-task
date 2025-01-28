@@ -71,7 +71,7 @@ const MarketCarousel: FC = () => {
               </div>
               <Link
                 to={"/markets/" + crypto.id}
-                className="btn btn-accent btn-sm w-full mt-2"
+                className="btn btn-secondary btn-sm w-full mt-2"
                 state={{ lastPage: "/" }}
               >
                 نمایش جزئیات

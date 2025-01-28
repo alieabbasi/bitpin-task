@@ -97,7 +97,7 @@ export const marketsTableColumnsData: (
       <Link
         to={`/markets/${data.id}`}
         state={{ lastPage: "/markets" }}
-        className="btn btn-accent btn-sm flex shrink-0 flex-nowrap"
+        className="btn btn-secondary btn-sm flex shrink-0 flex-nowrap"
       >
         <span>جزيیات</span>
         <ArrowLeft size="20" color="white" />

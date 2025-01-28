@@ -102,7 +102,7 @@ const HomePage: FC = () => {
           </h4>
           <Link to="/markets" className="btn btn-lg btn-accent my-8 w-max">
             <span>مشاهده بازارها</span>
-            <ArrowLeft size="20" color="white" />
+            <ArrowLeft size="20" color="black" />
           </Link>
         </div>
         <div className="shrink-0 flex-grow flex justify-center items-center">
