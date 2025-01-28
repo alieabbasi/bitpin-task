@@ -4,18 +4,24 @@ import { FC, PropsWithChildren } from "react";
 interface LoadingProps {
   info?: string;
   dynamic?: boolean;
+  customHeight?: number;
 }
 
-const Loading: FC<LoadingProps & PropsWithChildren> = ({ info, dynamic }) => {
+const Loading: FC<LoadingProps & PropsWithChildren> = ({
+  info,
+  dynamic,
+  customHeight,
+}) => {
   return (
     <div
       className={clsx("w-full flex justify-center items-center", {
-        "h-screen": !dynamic,
-        "min-h-[50vh]": dynamic,
+        "h-screen": !dynamic && !customHeight,
+        "min-h-[50vh]": dynamic && !customHeight,
       })}
+      style={{ height: customHeight ? `${customHeight}px` : "auto" }}
     >
       <span className="loading loading-infinity loading-lg" />
-      <span className="mr-2">{info || "در حال بارگزاری داده‌ها"}</span>
+      {info && <span className="mr-2">{info}</span>}
     </div>
   );
 };

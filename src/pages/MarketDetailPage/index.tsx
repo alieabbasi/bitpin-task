@@ -7,6 +7,8 @@ import ActiveOrdersTable from "@/components/MarketDetails/ActiveOrdersTable";
 import { MarketTypes } from "../MarketsPage/useMarketsPageLogic";
 import MatchesTable from "@/components/MarketDetails/MatchesTable";
 import Loading from "@/components/ui/Loading";
+import { Link } from "react-router-dom";
+import { Back } from "iconsax-react";
 
 const MarketDetailPage: FC = () => {
   const { tabValue, marketData, onTabChange } = useMarketDetailPageLogic();
@@ -16,16 +18,22 @@ const MarketDetailPage: FC = () => {
   return (
     <>
       <div className="w-full h-full flex flex-col space-y-4 min-h-[50vh]">
-        <div className="w-full text-2xl flex justify-center items-center space-x-2 space-x-reverse">
-          <span className="text-2xl">بازار:</span>
-          <div className="size-10">
-            <img
-              src={marketData.image}
-              alt={marketData.title}
-              className="size-full"
-            />
+        <div className="relative flex items-center">
+          <Link to={"/markets"} className="btn btn-sm absolute top-0 right-0">
+            <Back size="16" color="white" className="-scale-x-100" />
+            بازگشت
+          </Link>
+          <div className="w-full text-2xl flex justify-center items-center space-x-2 space-x-reverse max-sm:mt-12">
+            <span className="text-2xl">بازار:</span>
+            <div className="size-10">
+              <img
+                src={marketData.image}
+                alt={marketData.title}
+                className="size-full"
+              />
+            </div>
+            <span className="font-bold">{marketData.title}</span>
           </div>
-          <span className="font-bold">{marketData.title}</span>
         </div>
         <div role="tablist" className="tabs tabs-lifted md:tabs-lg">
           <input
