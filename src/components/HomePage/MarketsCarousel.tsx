@@ -39,7 +39,7 @@ const MarketCarousel: FC = () => {
           {fullList.map((crypto, index) => (
             <div
               key={index}
-              className="min-w-[200px] border border-base-300 bg-base-100 p-4 rounded-xl text-center"
+              className="min-w-[200px] border border-base-300 bg-base-200/20 p-4 rounded-xl text-center"
             >
               <img
                 src={crypto.currency1.image}

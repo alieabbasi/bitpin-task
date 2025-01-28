@@ -23,7 +23,7 @@ const Header: FC = () => {
           "drawer-content flex flex-col bg-base-300/10 backdrop-blur-md border-b border-b-base-300/20 shadow-md"
         )}
       >
-        <div className="p-0 navbar w-full container">
+        <div className="py-0 navbar w-full container">
           <div className="flex-none sm:hidden">
             {/* Side bar menu icon */}
             <label

@@ -11,6 +11,8 @@ const HomePage: FC = () => {
   return (
     <div className="w-full h-full self-center flex flex-col">
       <div className="container flex flex-col justify-center max-sm:items-center">
+      <div className="h-60 w-[50vw] rounded-full bg-white blur-[190px] absolute -top-60 left-1/2 -translate-x-1/2 -translate-y-1/2 max-sm:opacity-50"></div>
+
         <h1 className="text-xl sm:text-3xl font-extrabold flex max-sm:justify-center items-center">
           {/* <div className="size-10 rounded-lg overflow-hidden max-sm:mb-4 sm:ml-4">
           <img src="/bitpin.png" alt="بیت‌پین" />
