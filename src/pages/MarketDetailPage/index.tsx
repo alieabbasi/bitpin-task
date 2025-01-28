@@ -4,7 +4,7 @@ import {
   useMarketDetailPageLogic,
 } from "./useMarketDetailPageLogic";
 import ActiveOrdersTable from "@/components/MarketDetails/ActiveOrdersTable";
-import { MarketTypes } from "./useMarketsPageLogic";
+import { MarketTypes } from "../MarketsPage/useMarketsPageLogic";
 import MatchesTable from "@/components/MarketDetails/MatchesTable";
 import Loading from "@/components/ui/Loading";
 

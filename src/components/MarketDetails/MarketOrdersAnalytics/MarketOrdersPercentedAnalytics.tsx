@@ -1,6 +1,6 @@
 import { OrderType } from "@/@Types/order.model";
 import RangeInput from "@/components/ui/RangeInput";
-import { MarketTypes } from "@/pages/useMarketsPageLogic";
+import { MarketTypes } from "@/pages/MarketsPage/useMarketsPageLogic";
 import Decimal from "decimal.js";
 import { FC, useCallback, useState } from "react";
 
@@ -36,7 +36,7 @@ const MarketOrdersPercentedAnalytics: FC<
             .mul(perCof)
             .mul(+order.remain / +order.amount)
         ),
-        // Considering remain as the weight, for weighted mean here, with the percentage appliance
+        // Considering remain as the weight, for weighted mean here, and also percentage is applied too
         weightedPriceSum: aggData.weightedPriceSum.plus(
           new Decimal(+order.remain).mul(+order.price).mul(perCof)
         ),
@@ -71,13 +71,13 @@ const MarketOrdersPercentedAnalytics: FC<
         {ordersAnalytics && (
           <div className="bg-base-200 rounded-lg flex flex-wrap mt-6 p-0.5">
             <div className="flex justify-center items-center space-x-2 space-x-reverse p-3 m-0.5 bg-base-100 rounded-md">
-              <p className="text-sm">مجموع باقی‌مانده:</p>
+              <p className="text-sm">مجموع حجم ارز قابل دریافت:</p>
               <p className="font-bold">
                 {ordersAnalytics.totalRemains.toLocaleString()}
               </p>
             </div>
             <div className="flex justify-center items-center space-x-2 space-x-reverse p-3 m-0.5 bg-base-100 rounded-md">
-              <p className="text-sm">مجموع مبالغ:</p>
+              <p className="text-sm">مجموع مبالغ قابل پرداخت:</p>
               <p className="font-bold">
                 {ordersAnalytics.totalValues.toLocaleString()}{" "}
                 <span className="opacity-50">

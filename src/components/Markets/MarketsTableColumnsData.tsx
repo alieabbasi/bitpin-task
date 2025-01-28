@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "iconsax-react";
 
-import { MarketTypes } from "@/pages/useMarketsPageLogic";
+import { MarketTypes } from "@/pages/MarketsPage/useMarketsPageLogic";
 import { ColumnsDataType } from "../ui/Table";
 import { MarketType } from "@/@Types/market.model";
 
@@ -21,7 +21,7 @@ export const marketsTableColumnsData: (
         />
       </div>
     ),
-    href: (data) => `/${data.id}`,
+    href: (data) => `/markets/${data.id}`,
   },
   {
     name: "نام بازار",
@@ -95,7 +95,7 @@ export const marketsTableColumnsData: (
     key: "operations",
     render: (data) => (
       <Link
-        to={`/${data.id}`}
+        to={`/markets/${data.id}`}
         className="btn btn-accent btn-sm flex shrink-0 flex-nowrap"
       >
         <span>جزيیات</span>

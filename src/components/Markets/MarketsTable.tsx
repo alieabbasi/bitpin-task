@@ -2,7 +2,7 @@ import { MarketType } from "@/@Types/market.model";
 import { FC } from "react";
 import Table from "../ui/Table";
 import { marketsTableColumnsData } from "./MarketsTableColumnsData";
-import { MarketTypes } from "@/pages/useMarketsPageLogic";
+import { MarketTypes } from "@/pages/MarketsPage/useMarketsPageLogic";
 import { useSearchParams } from "react-router-dom";
 import Pagination from "../ui/Pagination";
 

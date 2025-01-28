@@ -2,7 +2,7 @@ import Decimal from "decimal.js";
 import { FC, useMemo } from "react";
 
 import { OrderType } from "@/@Types/order.model";
-import { MarketTypes } from "@/pages/useMarketsPageLogic";
+import { MarketTypes } from "@/pages/MarketsPage/useMarketsPageLogic";
 
 interface OrdersAnalyticsType {
   totalRemains: Decimal;

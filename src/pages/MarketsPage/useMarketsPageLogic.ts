@@ -1,7 +1,8 @@
-import { paginateMarketsArray } from "@/utils/pagination";
 import { ChangeEvent, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
-import useStore from "../services/store.service";
+
+import { paginateMarketsArray } from "@/utils/pagination";
+import useStore from "@/services/store.service";
 
 export enum MarketTypes {
   IRT = "IRT",

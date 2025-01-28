@@ -3,7 +3,7 @@ import Table, { ColumnsDataType } from "../ui/Table";
 import { useCustomQueryGET } from "@/services/api.service";
 import endpoints from "@/utils/endpoints";
 import { OrdersListType, OrderType } from "@/@Types/order.model";
-import { MarketTypes } from "@/pages/useMarketsPageLogic";
+import { MarketTypes } from "@/pages/MarketsPage/useMarketsPageLogic";
 import MarketOrdersAnalytics from "./MarketOrdersAnalytics/MarketOrdersAnalytics";
 import MarketOrdersPercentedAnalytics from "./MarketOrdersAnalytics/MarketOrdersPercentedAnalytics";
 

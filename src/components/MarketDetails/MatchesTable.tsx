@@ -3,7 +3,7 @@ import Table, { ColumnsDataType } from "../ui/Table";
 import { useCustomQueryGET } from "@/services/api.service";
 import endpoints from "@/utils/endpoints";
 import { MatchType } from "@/@Types/match.model";
-import { MarketTypes } from "@/pages/useMarketsPageLogic";
+import { MarketTypes } from "@/pages/MarketsPage/useMarketsPageLogic";
 
 interface MatchesTableProps {
   marketId: string;

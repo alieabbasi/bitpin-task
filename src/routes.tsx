@@ -5,6 +5,7 @@ import { createBrowserRouter } from "react-router-dom";
 // import Layout from "./Layout";
 // import NotFoundPage from "./pages/NotFoundPage";
 import withSuspenseLoading from "./components/withSuspenceLoading";
+import HomePage from "./pages/HomePage";
 
 const MarketsPage = withSuspenseLoading(
   lazy(() => import("./pages/MarketsPage"))
@@ -24,10 +25,14 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
+        element: <HomePage />,
+      },
+      {
+        path: "markets",
         element: <MarketsPage />,
       },
       {
-        path: "/:id",
+        path: "markets/:id",
         element: <MarketDetailPage />,
       },
       {
