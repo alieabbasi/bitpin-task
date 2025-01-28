@@ -7,19 +7,23 @@ import ActiveOrdersTable from "@/components/MarketDetails/ActiveOrdersTable";
 import { MarketTypes } from "../MarketsPage/useMarketsPageLogic";
 import MatchesTable from "@/components/MarketDetails/MatchesTable";
 import Loading from "@/components/ui/Loading";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Back } from "iconsax-react";
 
 const MarketDetailPage: FC = () => {
   const { tabValue, marketData, onTabChange } = useMarketDetailPageLogic();
+  const location = useLocation();
 
   if (!marketData) return null;
 
   return (
     <>
-      <div className="w-full h-full flex flex-col space-y-4 min-h-[50vh] container">
+      <div className="w-full h-full flex flex-col space-y-4 min-h-[50vh] container mt-6">
         <div className="relative flex items-center">
-          <Link to={"/markets"} className="btn btn-sm absolute top-0 right-0">
+          <Link
+            to={location.state?.lastPage || "/markets"}
+            className="btn btn-sm absolute top-0 right-0"
+          >
             <Back size="16" color="white" className="-scale-x-100" />
             بازگشت
           </Link>

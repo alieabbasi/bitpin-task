@@ -1,7 +1,11 @@
-import MarketCarousel from "@/components/HomePage/MarketsCarousel";
 import { ArrowLeft } from "iconsax-react";
-import { FC } from "react";
+import { FC, lazy } from "react";
 import { Link } from "react-router-dom";
+
+// import MarketCarousel from "@/components/HomePage/MarketsCarousel";
+const MarketCarousel = lazy(
+  () => import("@/components/HomePage/MarketsCarousel")
+);
 
 const HomePage: FC = () => {
   return (

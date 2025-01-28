@@ -1,18 +1,17 @@
 import clsx from "clsx";
 import { CloseCircle, DollarCircle, Home } from "iconsax-react";
 import { FC, useRef } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Header: FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const location = useLocation();
 
   const toggleMenu = () => {
     inputRef.current?.click();
   };
 
   return (
-    <div className="drawer">
+    <div className="drawer sticky top-0 z-30">
       <input
         ref={inputRef}
         id="main-side-bar"
@@ -20,13 +19,13 @@ const Header: FC = () => {
         className="drawer-toggle"
       />
       <div
-        className={clsx("drawer-content flex flex-col", {
-          "bg-base-300": location.pathname !== "/",
-        })}
+        className={clsx(
+          "drawer-content flex flex-col bg-base-300/10 backdrop-blur-md border-b border-b-base-300/20 shadow-md"
+        )}
       >
-        {/* Navbar */}
         <div className="p-0 navbar w-full container">
           <div className="flex-none sm:hidden">
+            {/* Side bar menu icon */}
             <label
               htmlFor="main-side-bar"
               aria-label="open sidebar"
@@ -49,7 +48,7 @@ const Header: FC = () => {
           </div>
           <nav className="hidden sm:block">
             <ul className="menu menu-horizontal">
-              {/* Navbar menu content here */}
+              {/* Desktop navbar menu content */}
               <li>
                 <Link to="/" className="btn btn-ghost flex items-center">
                   <Home size="24" color="#FFF" />
@@ -78,7 +77,7 @@ const Header: FC = () => {
           className="drawer-overlay"
         ></label>
         <ul className="menu bg-base-200 min-h-full w-80 p-4">
-          {/* Sidebar content here */}
+          {/* Sidebar navbar content */}
           <div className="flex justify-between items-center mt-4">
             <img className="w-48 hover:bg-none" src="/bitpin-text.svg" alt="" />
             <button

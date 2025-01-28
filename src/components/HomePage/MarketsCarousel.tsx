@@ -1,27 +1,40 @@
 import useStore from "@/services/store.service";
 import clsx from "clsx";
-import { motion } from "framer-motion";
-import { FC, useMemo } from "react";
+import { FC, useMemo, useRef } from "react";
 import Loading from "../ui/Loading";
+import { Link } from "react-router-dom";
 
 const MarketCarousel: FC = () => {
   const { markets, isLoading } = useStore((store) => store);
   const fullList = useMemo(() => [...markets, ...markets], [markets]);
 
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  const pauseAnimation = () => {
+    if (carouselRef.current) {
+      carouselRef.current.style.animationPlayState = "paused";
+    }
+  };
+
+  const resumeAnimation = () => {
+    if (carouselRef.current) {
+      carouselRef.current.style.animationPlayState = "running";
+    }
+  };
+
   return (
-    <div className="relative overflow-hidden w-full dir-ltr">
+    <div
+      className="relative overflow-hidden w-full dir-ltr"
+      onMouseEnter={pauseAnimation}
+      onMouseLeave={resumeAnimation}
+    >
       {isLoading ? (
         <Loading customHeight={182} />
       ) : (
-        <motion.div
-          className="flex gap-4"
-          animate={{ x: ["0%", "-1000%"] }}
-          transition={{
-            repeat: Infinity,
-            ease: "linear",
-            duration: 150,
-          }}
-          style={{ display: "flex", whiteSpace: "nowrap" }}
+        <div
+          className="flex gap-4 whitespace-nowrap animate-marquee"
+          style={{ animationPlayState: "running" }} // default animation state
+          ref={carouselRef}
         >
           {fullList.map((crypto, index) => (
             <div
@@ -56,9 +69,16 @@ const MarketCarousel: FC = () => {
                   %
                 </div>
               </div>
+              <Link
+                to={"/markets/" + crypto.id}
+                className="btn btn-accent btn-sm w-full mt-2"
+                state={{ lastPage: "/" }}
+              >
+                نمایش جزئیات
+              </Link>
             </div>
           ))}
-        </motion.div>
+        </div>
       )}
     </div>
   );

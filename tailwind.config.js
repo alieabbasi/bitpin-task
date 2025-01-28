@@ -5,11 +5,18 @@ export default {
     extend: {
       animation: {
         wiggle: "wiggle 0.5s ease-in-out",
+        marquee: "marquee 150s linear infinite"
       },
       keyframes: {
+        // Header logo animation
         wiggle: {
           "33%, 66%": { transform: "rotate(-8deg)" },
           "16%, 50%, 84%": { transform: "rotate(8deg)" },
+        },
+        // Main page market carousel animation
+        marquee: {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-1000%)" },
         },
       },
     },

@@ -1,5 +1,5 @@
 import { Ghost } from "iconsax-react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Loading from "./Loading";
 
 export interface ColumnsDataType<T> {
@@ -19,6 +19,7 @@ interface TableProps<T> {
 
 const Table = <T,>({ title, columnsData, data, isLoading }: TableProps<T>) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const titleSuffix = title.endsWith("ی")
     ? ""
     : title.endsWith("ه")
@@ -64,7 +65,9 @@ const Table = <T,>({ title, columnsData, data, isLoading }: TableProps<T>) => {
                   }
                   onClick={() =>
                     columnsData?.[0].href
-                      ? navigate(columnsData?.[0].href(item))
+                      ? navigate(columnsData?.[0].href(item), {
+                          state: { location: location.pathname },
+                        })
                       : null
                   }
                 >

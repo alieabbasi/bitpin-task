@@ -96,6 +96,7 @@ export const marketsTableColumnsData: (
     render: (data) => (
       <Link
         to={`/markets/${data.id}`}
+        state={{ lastPage: "/markets" }}
         className="btn btn-accent btn-sm flex shrink-0 flex-nowrap"
       >
         <span>جزيیات</span>
