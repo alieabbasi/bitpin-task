@@ -1,9 +1,11 @@
+import clsx from "clsx";
 import { CloseCircle, DollarCircle, Home } from "iconsax-react";
 import { FC, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Header: FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
+  const location = useLocation();
 
   const toggleMenu = () => {
     inputRef.current?.click();
@@ -17,9 +19,13 @@ const Header: FC = () => {
         type="checkbox"
         className="drawer-toggle"
       />
-      <div className="drawer-content flex flex-col bg-base-300">
+      <div
+        className={clsx("drawer-content flex flex-col", {
+          "bg-base-300": location.pathname !== "/",
+        })}
+      >
         {/* Navbar */}
-        <div className="p-0 navbar w-full">
+        <div className="p-0 navbar w-full container">
           <div className="flex-none sm:hidden">
             <label
               htmlFor="main-side-bar"

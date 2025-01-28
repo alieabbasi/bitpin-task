@@ -9,7 +9,7 @@ const Markets: FC = () => {
     useMarketsPageLogic();
 
   return (
-    <div className="w-full flex flex-col space-y-4">
+    <div className="w-full flex flex-col space-y-4 container">
       <div className="w-full text-2xl font-black text-center ">
         <span>بازارها</span>
       </div>

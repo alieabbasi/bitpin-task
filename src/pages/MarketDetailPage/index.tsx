@@ -17,7 +17,7 @@ const MarketDetailPage: FC = () => {
 
   return (
     <>
-      <div className="w-full h-full flex flex-col space-y-4 min-h-[50vh]">
+      <div className="w-full h-full flex flex-col space-y-4 min-h-[50vh] container">
         <div className="relative flex items-center">
           <Link to={"/markets"} className="btn btn-sm absolute top-0 right-0">
             <Back size="16" color="white" className="-scale-x-100" />

@@ -16,7 +16,7 @@ const Layout = () => {
       <Header />
       <ErrorBoundary>
         <Suspense fallback={<Loading info="در حال بارگزاری ..." />}>
-          <main className="h-full p-4 bg-base-100 container min-h-[calc(100vh-120px)] flex">
+          <main className="h-full py-4 bg-base-100 min-h-[calc(100vh-120px)] flex">
             <Outlet />
           </main>
         </Suspense>
