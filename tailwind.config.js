@@ -15,7 +15,7 @@ export default {
         },
         // Main page market carousel animation
         marquee: {
-          "0%": { transform: "translateX(0%)" },
+          "0%": { transform: "translateX(60%)" },
           "100%": { transform: "translateX(-1000%)" },
         },
       },

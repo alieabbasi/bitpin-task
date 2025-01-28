@@ -18,7 +18,7 @@ const Loading: FC<LoadingProps & PropsWithChildren> = ({
         "h-screen": !dynamic && !customHeight,
         "min-h-[50vh]": dynamic && !customHeight,
       })}
-      style={{ height: customHeight ? `${customHeight}px` : "auto" }}
+      style={{ height: customHeight ? `${customHeight}px` : undefined }}
     >
       <span className="loading loading-infinity loading-lg" />
       {info && <span className="mr-2">{info}</span>}
